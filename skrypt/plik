@@ -1,0 +1,301 @@
+150
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('27', '109', '1', '2018/1/6', '17');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('28', '103', '1', '2018/7/14', '13');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('29', '102', '4', '2018/8/25', '19');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('24', '204', '4', '2018/12/23', '10');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('31', '105', '4', '2018/4/28', '11');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('16', '301', '2', '2018/8/6', '6');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('10', '208', '3', '2018/4/24', '19');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('23', '204', '4', '2018/1/5', '10');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('24', '105', '3', '2018/6/27', '12');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('6', '107', '4', '2018/12/3', '2');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('28', '104', '3', '2018/10/25', '21');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('27', '303', '3', '2018/9/5', '9');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('39', '106', '1', '2018/5/22', '1');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('8', '300', '4', '2018/8/20', '6');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('38', '204', '1', '2018/2/10', '8');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('6', '107', '3', '2018/9/30', '12');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('1', '204', '3', '2018/9/27', '13');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('17', '102', '4', '2018/1/16', '1');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('38', '207', '2', '2018/9/23', '13');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('2', '103', '1', '2018/3/26', '20');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('24', '303', '3', '2018/7/14', '13');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('40', '108', '4', '2018/2/6', '15');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('31', '305', '2', '2018/12/20', '5');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('12', '205', '3', '2018/1/15', '12');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('24', '208', '1', '2018/9/1', '2');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('38', '106', '3', '2018/9/17', '12');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('23', '202', '1', '2018/1/7', '2');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('17', '106', '4', '2018/11/28', '4');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('10', '308', '1', '2018/3/13', '9');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('23', '200', '2', '2018/11/26', '4');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('29', '109', '1', '2018/11/6', '17');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('30', '202', '1', '2018/2/28', '21');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('5', '107', '3', '2018/10/29', '5');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('1', '308', '3', '2018/9/20', '2');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('10', '109', '4', '2018/4/13', '13');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('23', '203', '4', '2018/4/3', '16');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('21', '203', '4', '2018/12/4', '14');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('40', '306', '1', '2018/7/15', '17');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('11', '206', '1', '2018/6/3', '14');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('31', '206', '4', '2018/12/4', '14');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('37', '107', '4', '2018/11/8', '12');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('6', '101', '2', '2018/10/25', '18');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('9', '305', '3', '2018/12/19', '16');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('5', '107', '4', '2018/4/28', '19');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('19', '309', '3', '2018/1/10', '6');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('11', '201', '4', '2018/12/10', '4');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('33', '107', '2', '2018/4/5', '12');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('19', '107', '1', '2018/6/9', '5');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('24', '302', '4', '2018/11/17', '13');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('1', '209', '1', '2018/6/21', '8');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('10', '304', '1', '2018/6/23', '12');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('32', '105', '3', '2018/1/3', '17');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('15', '304', '4', '2018/9/5', '18');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('19', '209', '4', '2018/4/27', '15');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('11', '106', '4', '2018/12/27', '13');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('33', '203', '2', '2018/7/15', '14');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('18', '307', '4', '2018/7/29', '20');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('32', '200', '1', '2018/5/29', '2');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('1', '308', '1', '2018/3/22', '5');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('30', '301', '2', '2018/6/22', '21');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('12', '107', '3', '2018/12/7', '3');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('13', '109', '4', '2018/1/15', '21');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('8', '207', '4', '2018/11/29', '7');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('7', '306', '2', '2018/2/10', '9');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('22', '202', '2', '2018/5/24', '14');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('3', '102', '2', '2018/3/13', '7');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, pocz4watek_rezerwacji, dni)
+values ('29', '309', '3', '2018/2/26', '21');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('12', '106', '2', '2018/12/22', '15');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('11', '105', '1', '2018/12/7', '20');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('7', '108', '2', '2018/5/5', '2');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('35', '104', '1', '2018/3/18', '3');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('5', '304', '1', '2018/1/2', '7');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('1', '303', '4', '2018/1/17', '11');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('11', '106', '1', '2018/2/17', '19');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('32', '309', '2', '2018/7/7', '13');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('38', '206', '1', '2018/9/1', '20');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('3', '103', '1', '2018/2/9', '5');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('27', '100', '2', '2018/12/9', '2');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('6', '309', '4', '2018/6/26', '4');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('8', '106', '4', '2018/2/16', '4');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('14', '105', '2', '2018/11/10', '13');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('12', '103', '3', '2018/3/5', '5');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('21', '304', '2', '2018/1/4', '13');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('28', '200', '4', '2018/7/9', '8');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('16', '306', '2', '2018/6/7', '20');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('4', '307', '3', '2018/1/1', '21');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('23', '107', '3', '2018/9/6', '20');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('32', '304', '2', '2018/10/15', '11');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('23', '101', '3', '2018/5/9', '17');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('18', '205', '1', '2018/6/26', '7');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('26', '208', '2', '2018/3/16', '20');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('13', '204', '1', '2018/9/5', '18');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('15', '309', '3', '2018/11/13', '1');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('19', '205', '2', '2018/4/9', '16');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('20', '305', '2', '2018/4/19', '17');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('2', '308', '1', '2018/8/21', '14');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('22', '307', '2', '2018/3/19', '17');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('19', '109', '1', '2018/9/27', '17');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('26', '109', '3', '2018/6/2', '5');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('26', '305', '3', '2018/9/20', '13');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('31', '104', '2', '2018/3/13', '13');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('12', '303', '2', '2018/3/3', '15');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('22', '106', '4', '2018/2/4', '9');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('39', '109', '4', '2018/12/4', '17');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('6', '204', '2', '2018/8/28', '14');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('31', '207', '3', '2018/9/20', '16');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('10', '108', '1', '2018/6/20', '8');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('14', '304', '2', '2018/1/20', '3');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('35', '207', '2', '2018/8/27', '3');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('13', '308', '3', '2018/10/27', '1');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('39', '306', '4', '2018/5/11', '5');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('29', '208', '3', '2018/7/5', '14');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('21', '200', '1', '2018/12/6', '14');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('33', '208', '4', '2018/5/1', '21');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('20', '209', '2', '2018/1/6', '13');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('15', '303', '3', '2018/1/28', '6');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('8', '106', '4', '2018/1/27', '18');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('31', '306', '1', '2018/11/10', '13');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('33', '307', '1', '2018/5/1', '1');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('40', '309', '1', '2018/11/17', '8');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('33', '107', '1', '2018/8/11', '4');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('33', '106', '3', '2018/12/19', '1');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('8', '306', '4', '2018/4/12', '10');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('5', '105', '3', '2018/10/21', '5');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('17', '103', '1', '2018/3/21', '19');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('35', '304', '3', '2018/12/15', '10');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('26', '308', '4', '2018/5/3', '10');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('10', '202', '3', '2018/3/5', '6');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('35', '203', '1', '2018/5/2', '16');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('38', '108', '2', '2018/9/22', '3');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('18', '102', '3', '2018/10/6', '6');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('9', '102', '1', '2018/1/26', '9');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('2', '104', '2', '2018/1/30', '8');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('10', '101', '1', '2018/1/24', '12');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('7', '205', '3', '2018/2/28', '9');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('19', '309', '2', '2018/2/14', '2');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('10', '100', '1', '2018/8/13', '20');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('8', '104', '3', '2018/12/17', '16');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('13', '301', '2', '2018/2/4', '12');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('25', '101', '1', '2018/5/16', '12');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('11', '202', '2', '2018/2/27', '16');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('11', '102', '4', '2018/5/13', '12');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('14', '203', '2', '2018/9/2', '3');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('4', '308', '2', '2018/3/17', '9');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('4', '204', '3', '2018/12/3', '20');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('35', '306', '3', '2018/1/22', '15');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('29', '208', '4', '2018/12/16', '12');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('5', '203', '2', '2018/10/4', '18');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('31', '305', '1', '2018/4/16', '18');
+insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
+values ('35', '204', '1', '2018/2/15', '21');
