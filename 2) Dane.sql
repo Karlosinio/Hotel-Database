@@ -1,5 +1,5 @@
 ﻿-- ZSBD: Projekt Systemu
--- Część 3 - Dane
+-- Część 2 - Dane
 --
 -- Autorzy:
 -- Paweł Galewicz	210182
@@ -40,7 +40,7 @@ values ('100', '2', '800', '0', '1'),
 ('201', '3', '1000', '1', '0'),
 ('202', '2', '800', '0', '1'),
 ('203', '3', '800', '1', '1'),
-('204', '2', '500', '0', '0'),
+('204', '2', '1000', '1', '1'),
 ('205', '1', '900', '0', '1'),
 ('206', '4', '600', '0', '0'),
 ('207', '4', '700', '0', '0'),
@@ -64,19 +64,19 @@ go
 insert into klienci (imie, nazwisko, miasto, adres, telefon, data_urodzenia, typ)
 values ('Izabela', 'Kołodziej', '3', 'Grzegorzowska 33', '523584547', '1995/7/10', '3'),
 ('Krzysztof', 'Andrzejewski', '1', 'Rafałowska 56', '584894914', '1948/11/7', '3'),
-('Czesław', 'Duda', '5', 'Adamowska 81', '528246425', '1941/1/19', '2'),
+('Czesław', 'Duda', '7', 'Adamowska 81', '528246425', '1941/1/19', '2'),
 ('Damian', 'Walczak', '6', 'Michałowska 115', '521333565', '1971/2/3', '2'),
 ('Paulina', 'Krawczyk', '2', 'Danielowska 85', '562714483', '1967/3/17', '3'),
 ('Sylwia', 'Andrzejewski', '6', 'Romanowska 87', '546629341', '1957/9/6', '2'),
 ('Andrzej', 'Sadowski', '1', 'Adamowska 74', '575547128', '1968/12/13', '1'),
 ('Ryszard', 'Jasiński', '8', 'Józefowska 96', '589797817', '1967/6/6', '3'),
-('Maria', 'Wasilewski', '1', 'Marekowska 109', '556578799', '1986/5/12', '2'),
+('Marcin', 'Wasilewski', '1', 'Marekowska 109', '556578799', '1986/5/12', '2'),
 ('Sławomir', 'Michalak', '5', 'Czesławowska 4', '543329255', '1959/8/1', '2'),
 ('Mieczysław', 'Maciejewski', '7', 'Jerzyowska 54', '589372555', '1984/5/8', '2'),
 ('Alicja', 'Adamczyk', '6', 'Stanisławowska 32', '526469147', '1969/3/1', '1'),
 ('Iwona', 'Adamski', '3', 'Mirosławowska 10', '564646831', '1953/9/10', '3'),
 ('Józef', 'Rutkowski', '9', 'Tadeuszowska 133', '522266575', '1999/1/18', '3'),
-('Artur', 'Nowakowski', '5', 'Tadeuszowska 39', '519741244', '1951/1/5', '2'),
+('Artur', 'Nowakowski', '2', 'Tadeuszowska 39', '519741244', '1951/1/5', '2'),
 ('Piotr', 'Borkowski', '4', 'Tomaszowska 32', '536928663', '1973/5/5', '3'),
 ('Maria', 'Rutkowski', '7', 'Romanowska 16', '529533628', '1951/11/6', '2'),
 ('Krystyna', 'Krajewski', '5', 'Kamilowska 19', '549372563', '1946/3/18', '2'),
@@ -89,11 +89,11 @@ values ('Izabela', 'Kołodziej', '3', 'Grzegorzowska 33', '523584547', '1995/7/1
 ('Stanisław', 'Marciniak', '4', 'Marianowska 43', '585629369', '1961/6/29', '2'),
 ('Agnieszka', 'Sokołowski', '4', 'Zbigniewowska 59', '562945919', '1960/8/8', '1'),
 ('Dawid', 'Szulc', '6', 'Wojciechowska 89', '552595834', '1984/12/29', '2'),
-('Patrycja', 'Zalewski', '4', 'Mariuszowska 73', '521528289', '1951/2/30', '3'),
+('Patrycja', 'Zalewski', '4', 'Mariuszowska 73', '521528289', '1951/2/27', '3'),
 ('Janina', 'Wiśniewski', '6', 'Damianowska 40', '518546418', '1970/11/16', '3'),
 ('Stanisław', 'Król', '8', 'Jerzyowska 39', '585312875', '1985/5/20', '1'),
 ('Alicja', 'Stępień', '10', 'Piotrowska 45', '574475556', '1972/9/30', '3'),
-('Marianna', 'Szymczak', '3', 'Sebastianowska 38', '574983874', '1941/2/29', '2'),
+('Marianna', 'Szymczak', '3', 'Sebastianowska 38', '574983874', '1941/2/2', '2'),
 ('Wanda', 'Majewski', '9', 'Janowska 45', '599326176', '1990/3/2', '3'),
 ('Izabela', 'Baran', '9', 'Kazimierzowska 55', '517842922', '1999/7/30', '2'),
 ('Genowefa', 'Sadowski', '2', 'Edwardowska 24', '569169912', '1974/9/1', '1'),
