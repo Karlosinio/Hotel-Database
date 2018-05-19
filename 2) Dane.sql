@@ -457,7 +457,5 @@ values ('28', '302', '2', '2018/11/13', '2');
 insert into rezerwacje (nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni)
 values ('36', '108', '4', '2018/8/16', '6');
 
-
-
 select * from rezerwacje
 go
