@@ -9,16 +9,32 @@
 USE hotel
 GO
 
+-- Proceudra #1 - przenosi archwailne rezerwacje do tabeli byle_rezerwacje
 
+<<<<<<< HEAD:4) Uzycie poleceń.sql
+EXEC rezerwacje_archiwalne
+=======
 -- #1 Wyswietl wszystkich klientów.
 SELECT * 
 FROM klienci
+>>>>>>> parent of 8e0f6ad... Trzeba coś tu napisać:5) Uzycie poleceń.sql
 
 -- #2 Wyświetl imiona i nazwiska klientów, których nazwisko kończy się na "ki". 
 SELECT imie, nazwisko
 FROM klienci
 WHERE nazwisko LIKE '%ki'
 
+<<<<<<< HEAD:4) Uzycie poleceń.sql
+-- Proceudra #2 - usuwa konkretnego (wskazanego przez numer przy wywolaniu) pracownika z tabeli pracownicy
+
+EXEC usun_pracownika 10
+EXEC usun_pracownika 12
+EXEC usun_pracownika 14
+
+-- Procedura #3 - poprawia rejestracje, ktore nie byly poprawnie zarejestwoane (zbyt duza liczba osob) oraz drukuje komunikat, które z nich są niepoprawne
+
+EXEC poprawnosc_rejestracji
+=======
 -- #3 Wyswietl numery pokojow, w których znajduje się sejf oraz cena jest wieksza od 850.
 SELECT DISTINCT nr_pokoju
 FROM pokoje WHERE czy_sejf = 0 AND cena > 850
@@ -93,3 +109,4 @@ SELECT *, dbo.cena_rezerwacji(nr_rezerwacji) as 'cena_rezerwacji' FROM rezerwacj
 SELECT * FROM rezerwacje
 EXEC poprawnosc_rejestracji
 SELECT * FROM rezerwacje
+>>>>>>> parent of 8e0f6ad... Trzeba coś tu napisać:5) Uzycie poleceń.sql
