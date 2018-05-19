@@ -93,3 +93,43 @@ SELECT *, dbo.cena_rezerwacji(nr_rezerwacji) as 'cena_rezerwacji' FROM rezerwacj
 SELECT * FROM rezerwacje
 EXEC poprawnosc_rejestracji
 SELECT * FROM rezerwacje
+
+
+-- JUSTYNA --
+-- MOIM ZDANIEM CAŁKIEM OK ZAPYTANIA --
+
+--#1 Wyświetl rezerwacje, które zaczęły się w poniedziałek, a skończyły w poniedziałek lub czwartek.
+SELECT *, DATENAME (dw, poczatek_rezerwacji) AS dzien_rezerwacji, DATENAME (dw, DATEADD(day, dni, poczatek_rezerwacji)) AS dzien_konca_rezerwacji
+FROM rezerwacje
+WHERE (DATENAME (dw, poczatek_rezerwacji) = 'Monday') AND
+(DATENAME (dw, DATEADD(day, dni, poczatek_rezerwacji)) = 'Thursday' OR DATENAME (dw, DATEADD(day, dni, poczatek_rezerwacji)) = 'Monday')
+
+--#2 Wyświetl ile razy był wynajmowany każdy pokój.
+SELECT p.nr_pokoju, (SELECT COUNT (*) FROM byle_rezerwacje AS br WHERE br.nr_pokoju = p.nr_pokoju) +
+		(SELECT COUNT (*) FROM rezerwacje AS r WHERE r.nr_pokoju = p.nr_pokoju) AS 'ilość rezerwacji'
+FROM pokoje AS p
+GROUP BY p.nr_pokoju
+
+--#3  Wyświetl nazwiska klientów i numery ich rezerwacji, które zostały zrealizowane w dniu tygodnia, w którym było najwięcej rezerwacji.
+SELECT nazwisko, nr_rezerwacji 
+FROM klienci AS k, rezerwacje AS r WHERE DATENAME (dw, poczatek_rezerwacji) = 
+		(SELECT TOP 1 DATENAME (dw, poczatek_rezerwacji) 
+		FROM rezerwacje 
+		GROUP BY DATENAME (dw, poczatek_rezerwacji)
+		ORDER BY COUNT (*) DESC) AND r.nr_klienta = k.nr_klienta
+
+--#4 Wyświetl imie, nazwisko pracowników zatrudnionych w hotelu oraz nazwiska wszystkich jego współpracowników kończących się na 'k'.
+SELECT DISTINCT x.imie, x.nazwisko, y.nazwisko AS 'współpracownik', s.nazwa AS 'stanowisko'
+FROM pracownicy x, pracownicy y, stanowiska s
+WHERE	x.nr_stanowiska = y.nr_stanowiska AND
+		x.nr_pracownika <> y.nr_pracownika AND
+		x.nr_stanowiska = s.nr_stanowiska AND
+		y.nr_stanowiska = s.nr_stanowiska AND
+		y.nazwisko LIKE '%k'
+
+--#5 Dla każdego stanowiska wyświetl liczbę pracowników mających więcej niż 50 lat oraz sumę ich pensji. Rezultat zapytania umieść w jednym ciągu.
+SELECT CONCAT( nazwa, ' liczba pracowników: ', COUNT (*), ' suma pensji: ', SUM(placa) )
+FROM pracownicy as p, stanowiska as s 
+WHERE p.nr_stanowiska = s.nr_stanowiska  
+AND ((YEAR(GETDATE()) - YEAR(data_urodzenia))) > 50
+GROUP BY nazwa 
