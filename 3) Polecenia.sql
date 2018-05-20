@@ -135,3 +135,44 @@ AS
  END
 GO
 
+-- Wyzwalacz #2 - po zarchiwizowaniu wypozyczenia sprawdzane jest, czy klient nie awansowal do nowego typu
+
+IF EXISTS (SELECT 1 FROM sysobjects WHERE NAME='awans_klienta')
+DROP TRIGGER awans_klienta
+GO
+
+
+create trigger awans_klienta
+on byle_rezerwacje
+after insert
+as
+ begin
+	--------------tu mozna zmienic ilosc rezerwacji potrzebnych na awans-----------
+	declare @silver int = 5
+	declare @gold int = 10
+	-------------------------------------------------------------------------------
+	
+	declare awans cursor for
+	select nr_klienta from inserted
+	declare @id int, @ilosc_rezerwacji int
+	open awans
+	fetch next from awans into @id
+	while @@FETCH_STATUS = 0
+	 begin
+		select @ilosc_rezerwacji = count(*) from byle_rezerwacje
+		where nr_klienta = @id
+
+		if @ilosc_rezerwacji > @gold
+			update klienci
+			set typ = 3
+			where nr_klienta = @id
+		else if @ilosc_rezerwacji > @silver
+			update klienci
+			set typ = 2
+			where nr_klienta = @id
+		fetch next from awans into @id
+	 end
+	close awans
+	deallocate awans
+ end
+go
