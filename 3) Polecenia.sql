@@ -9,7 +9,9 @@
 USE hotel
 GO
 
--- Proceudra #1 - przenosi archwailne rezerwacje do tabeli byle_rezerwacje
+-- Proste procedury sluzace do poczatkowego ustawienia danych
+
+-- Proceudra #A - przenosi archwailne rezerwacje do tabeli byle_rezerwacje
 
 IF EXISTS (SELECT 1 FROM sysobjects WHERE NAME='rezerwacje_archiwalne')
 DROP PROCEDURE rezerwacje_archiwalne
@@ -28,7 +30,7 @@ AS
 GO
 
 
--- Proceudra #2 - usuwa konkretnego (wskazanego przez numer przy wywolaniu) pracownika z tabeli pracownicy
+-- Proceudra #B - usuwa konkretnego (wskazanego przez numer przy wywolaniu) pracownika z tabeli pracownicy
 
 IF EXISTS (SELECT 1 FROM sysobjects WHERE NAME='usun_pracownika')
 DROP PROCEDURE usun_pracownika
@@ -38,18 +40,19 @@ CREATE PROCEDURE usun_pracownika (@numer INT)
 AS
   BEGIN
 	UPDATE pracownicy SET data_zwolnienia = GETDATE() WHERE nr_pracownika = @numer
+	INSERT INTO byli_pracownicy SELECT * FROM pracownicy WHERE nr_pracownika = @numer
 	DELETE FROM pracownicy WHERE nr_pracownika = @numer
   END
 GO
 
 
--- Procedura #3 - poprawia rejestracje, ktore nie byly poprawnie zarejestwoane (zbyt duza liczba osob) oraz drukuje komunikat, które z nich są niepoprawne
+-- Procedura #1 - poprawia rejestracje, ktore nie byly poprawnie zarejestwoane (zbyt duza liczba osob) oraz drukuje komunikat, które z nich są niepoprawne, proponuje tez <NAPISZ>
 
 IF EXISTS (SELECT 1 FROM sysobjects WHERE NAME='poprawnosc_rejestracji')
-DROP PROCEDURE poprawnosc_rejestracji
+DROP PROCEDURE poprawnosc_rejestracji_osoby
 GO
 
-CREATE PROCEDURE poprawnosc_rejestracji
+CREATE PROCEDURE poprawnosc_rejestracji_osoby
 AS
  BEGIN
 	DECLARE Kursor CURSOR FOR SELECT nr_rezerwacji, nr_pokoju, ile_osob FROM rezerwacje
@@ -67,6 +70,10 @@ AS
 		  BEGIN
 			PRINT 'Poprawiam ilosc osob w rezerwacji ' + CONVERT(varchar(4), @nr_r) + '(pokoj ' + CONVERT(varchar(3), @nr_p) + ' z ' + CONVERT(varchar(5), @ile)  + ' na ' + CONVERT(varchar(1), @ilosc) + ')'
 			UPDATE rezerwacje SET ile_osob = @ilosc WHERE nr_rezerwacji = @nr_r
+
+
+
+
 		  END
 		FETCH NEXT FROM Kursor INTO @nr_r, @nr_p, @ile
 	  END
@@ -147,6 +154,7 @@ returns bit
  end
 go
 
+
 -- Wyzwalacz #1 - podczas usuwania pracownika przenosi go do tabeli byli_pracownicy
 
 IF EXISTS (SELECT 1 FROM sysobjects WHERE NAME='pracownik_archiwalny')
@@ -204,6 +212,7 @@ as
 	deallocate awans
  end
 go
+
 
 -- Wyzwalacz #3 - rozpatrywanie dodawanych rezerwacji i akcetowanie tylko tych o dostepnych pokojach w zadanym czasie
 
