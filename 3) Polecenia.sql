@@ -9,10 +9,8 @@
 USE hotel
 GO
 
--- Proste procedury sluzace do poczatkowego ustawienia danych
 
--- Proceudra #A - przenosi archwailne rezerwacje do tabeli byle_rezerwacje
-
+-- Proceudra #1 - przenosi archwailne rezerwacje do tabeli byle_rezerwacje
 IF EXISTS (SELECT 1 FROM sysobjects WHERE NAME='rezerwacje_archiwalne')
 DROP PROCEDURE rezerwacje_archiwalne
 GO
@@ -30,8 +28,7 @@ AS
 GO
 
 
--- Proceudra #B - usuwa konkretnego (wskazanego przez numer przy wywolaniu) pracownika z tabeli pracownicy
-
+-- Proceudra #2 - usuwa konkretnego (wskazanego przez numer przy wywolaniu) pracownika z tabeli pracownicy
 IF EXISTS (SELECT 1 FROM sysobjects WHERE NAME='usun_pracownika')
 DROP PROCEDURE usun_pracownika
 GO
@@ -46,8 +43,7 @@ AS
 GO
 
 
--- Procedura #1 - poprawia rejestracje, ktore nie byly poprawnie zarejestwoane (zbyt duza liczba osob) oraz drukuje komunikat, które z nich są niepoprawne, proponuje tez <NAPISZ>
-
+-- Procedura #3 - poprawia rejestracje, ktore nie byly poprawnie zarejestwoane (zbyt duza liczba osob) oraz drukuje komunikat, które z nich są niepoprawne
 IF EXISTS (SELECT 1 FROM sysobjects WHERE NAME='poprawnosc_rejestracji')
 DROP PROCEDURE poprawnosc_rejestracji_osoby
 GO
@@ -70,10 +66,6 @@ AS
 		  BEGIN
 			PRINT 'Poprawiam ilosc osob w rezerwacji ' + CONVERT(varchar(4), @nr_r) + '(pokoj ' + CONVERT(varchar(3), @nr_p) + ' z ' + CONVERT(varchar(5), @ile)  + ' na ' + CONVERT(varchar(1), @ilosc) + ')'
 			UPDATE rezerwacje SET ile_osob = @ilosc WHERE nr_rezerwacji = @nr_r
-
-
-
-
 		  END
 		FETCH NEXT FROM Kursor INTO @nr_r, @nr_p, @ile
 	  END
@@ -85,7 +77,6 @@ GO
 
 
 -- Funkcja #1 - oblicza cenę danej rezerwacji
-
 IF EXISTS (SELECT 1 FROM sysobjects WHERE NAME='cena_rezerwacji')
 DROP FUNCTION cena_rezerwacji
 GO
@@ -126,7 +117,6 @@ AS
 GO
 
 -- Funkcja #2 - sprawdzenie czy pokoj jest wolny w danym czasie
-
 if exists (select 1 from sysobjects where name = 'dostepnosc_pokoju')
 drop function dostepnosc_pokoju
 go
@@ -155,24 +145,7 @@ returns bit
 go
 
 
--- Wyzwalacz #1 - podczas usuwania pracownika przenosi go do tabeli byli_pracownicy
-
-IF EXISTS (SELECT 1 FROM sysobjects WHERE NAME='pracownik_archiwalny')
-DROP TRIGGER pracownik_archiwalny
-GO
-
-CREATE TRIGGER pracownik_archiwalny
-ON pracownicy
-AFTER delete
-AS
- BEGIN
-	INSERT INTO byli_pracownicy
-	SELECT * FROM deleted
- END
-GO
-
--- Wyzwalacz #2 - po zarchiwizowaniu wypozyczenia sprawdzane jest, czy klient nie awansowal do nowego typu
-
+-- Wyzwalacz #1 - po zarchiwizowaniu wypozyczenia sprawdzane jest, czy klient nie awansowal do nowego typu
 if exists (select 1 from sysobjects where name='awans_klienta')
 	drop trigger awans_klienta
 go
@@ -214,8 +187,7 @@ as
 go
 
 
--- Wyzwalacz #3 - rozpatrywanie dodawanych rezerwacji i akcetowanie tylko tych o dostepnych pokojach w zadanym czasie
-
+-- Wyzwalacz #2 - rozpatrywanie dodawanych rezerwacji i akcetowanie tylko tych o dostepnych pokojach w zadanym czasie
 if exists (select 1 from sysobjects where name='autoryzacja_rezerwacji')
 	drop trigger autoryzacja_rezerwacji
 go
@@ -249,3 +221,52 @@ as
 	deallocate autoryzacja
  end
  go
+
+
+
+ -- Wyzwalacz #3 - podczas rezerwacji proponuje lepsze pokoje które lepiej spełniają wymagania (posiadają przynajmniej te same cechy,
+IF EXISTS (SELECT 1 FROM sysobjects WHERE NAME='tansze_pokoje')
+	DROP TRIGGER tansze_pokoje
+GO
+
+CREATE TRIGGER tansze_pokoje
+ON rezerwacje
+FOR INSERT
+AS
+ BEGIN
+	DECLARE @nr_p INT, @il_o INT, @cena INT, @c_w BIT, @c_s BIT
+
+	DECLARE Kursor CURSOR FOR SELECT nr_pokoju, ilosc_osob, cena, czy_wanna, czy_sejf FROM pokoje
+	OPEN Kursor
+	FETCH NEXT FROM Kursor INTO @nr_p, @il_o, @cena, @c_w, @c_s
+
+	WHILE @@FETCH_STATUS = 0
+	  BEGIN
+		IF ((@cena <= (SELECT p.cena FROM pokoje AS p, inserted AS i WHERE i.nr_pokoju = p.nr_pokoju))
+		   AND (@nr_p NOT IN (SELECT r.nr_pokoju FROM rezerwacje AS r, inserted AS i
+				WHERE ((i.poczatek_rezerwacji > DATEADD(DAY, r.dni, r.poczatek_rezerwacji)) OR (DATEADD(DAY, i.dni, i.poczatek_rezerwacji) < r.poczatek_rezerwacji)))))
+		  BEGIN
+			DECLARE @opis VARCHAR(200) = ''
+
+			IF (@cena < (SELECT p.cena FROM pokoje AS p, inserted AS i WHERE i.nr_pokoju = p.nr_pokoju))
+				SET @opis = 'pokoj jest tanszy, '
+
+			IF (@il_o < (SELECT p.ilosc_osob FROM pokoje AS p, inserted AS i WHERE i.nr_pokoju = p.nr_pokoju))
+				SET @opis = @opis + 'miesci sie wiecej osob, '
+
+			IF (@c_s < (SELECT p.czy_sejf FROM pokoje AS p, inserted AS i WHERE i.nr_pokoju = p.nr_pokoju))
+				SET @opis = @opis + 'jest sejf, '
+
+			IF (@c_w < (SELECT p.czy_wanna FROM pokoje AS p, inserted AS i WHERE i.nr_pokoju = p.nr_pokoju))
+				SET @opis = @opis + 'jest wanna.'
+
+			if @opis <> ''
+				PRINT '   Pokoj ' + CONVERT(VARCHAR(3), @nr_p) + ' jest lepszym pokojem do wynajęcia, ponieważ: ' + @opis
+
+		  END
+			FETCH NEXT FROM Kursor INTO @nr_p, @il_o, @cena, @c_w, @c_s
+	  END
+	CLOSE Kursor
+	DEALLOCATE Kursor
+ END
+GO
