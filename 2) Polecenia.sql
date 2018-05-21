@@ -1,5 +1,5 @@
 ﻿-- ZSBD: Projekt Systemu
--- Część 3 - Polecenia (Procedury, Funkcje, Wyzwalacze)
+-- Część 2 - Polecenia (Procedury, Funkcje, Wyzwalacze)
 --
 -- Autorzy:
 -- Paweł Galewicz	210182

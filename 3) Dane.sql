@@ -1,5 +1,5 @@
 ﻿-- ZSBD: Projekt Systemu
--- Część 2 - Dane
+-- Część 3 - Dane
 --
 -- Autorzy:
 -- Paweł Galewicz	210182
