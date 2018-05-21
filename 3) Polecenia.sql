@@ -118,6 +118,34 @@ AS
 		END
 GO
 
+-- Funkcja #2 - sprawdzenie czy pokoj jest wolny w danym czasie
+
+if exists (select 1 from sysobjects where name = 'dostepnosc_pokoju')
+drop function dostepnosc_pokoju
+go
+
+create function dostepnosc_pokoju(@pokoj int, @poczatek date, @ile_dni int)
+returns bit
+ as
+  begin
+	if exists 
+		(
+		select * from rezerwacje
+		where @pokoj = nr_pokoju 
+			  and
+			  (
+			  (@poczatek >= poczatek_rezerwacji and @poczatek <= dateadd(day, dni, poczatek_rezerwacji))
+			  or
+			  (dateadd(day, @ile_dni, @poczatek) >= poczatek_rezerwacji and dateadd(day, @ile_dni, @poczatek) <= dateadd(day, dni, poczatek_rezerwacji))
+			  or
+			  (@poczatek <= poczatek_rezerwacji and dateadd(day, @ile_dni, @poczatek) >= dateadd(day, dni, poczatek_rezerwacji))
+			  )
+		)
+		return 0
+
+	return 1
+ end
+go
 
 -- Wyzwalacz #1 - podczas usuwania pracownika przenosi go do tabeli byli_pracownicy
 
@@ -137,9 +165,9 @@ GO
 
 -- Wyzwalacz #2 - po zarchiwizowaniu wypozyczenia sprawdzane jest, czy klient nie awansowal do nowego typu
 
-IF EXISTS (SELECT 1 FROM sysobjects WHERE NAME='awans_klienta')
-DROP TRIGGER awans_klienta
-GO
+if exists (select 1 from sysobjects where name='awans_klienta')
+	drop trigger awans_klienta
+go
 
 
 create trigger awans_klienta
@@ -176,3 +204,39 @@ as
 	deallocate awans
  end
 go
+
+-- Wyzwalacz #3 - rozpatrywanie dodawanych rezerwacji i akcetowanie tylko tych o dostepnych pokojach w zadanym czasie
+
+if exists (select 1 from sysobjects where name='autoryzacja_rezerwacji')
+	drop trigger autoryzacja_rezerwacji
+go
+
+create trigger autoryzacja_rezerwacji
+on rezerwacje
+instead of insert
+as
+ begin
+	declare autoryzacja cursor for
+	select nr_klienta, nr_pokoju, ile_osob, poczatek_rezerwacji, dni from inserted
+	declare @klient int, @pokoj int, @ile_osob int, @poczatek_rezerwacji date, @dni int
+	open autoryzacja
+	fetch next from autoryzacja into @klient, @pokoj, @ile_osob, @poczatek_rezerwacji, @dni
+	while @@FETCH_STATUS = 0
+	 begin
+		begin transaction
+			if(dbo.dostepnosc_pokoju(@pokoj, @poczatek_rezerwacji, @dni) = 0)
+			 begin
+				print 'Err: Pokoj ' + convert(varchar(3), @pokoj)+ ' jest zajety w żądanym okresie (od ' + convert(varchar(20), @poczatek_rezerwacji) + ' do ' + convert(varchar(20), dateadd(day, @dni, @poczatek_rezerwacji)) + ')'
+				rollback
+			 end
+			else
+			 begin
+				insert into rezerwacje values (@klient, @pokoj, @ile_osob, @poczatek_rezerwacji, @dni)
+				commit
+			 end
+		fetch next from autoryzacja into @klient, @pokoj, @ile_osob, @poczatek_rezerwacji, @dni
+	 end
+	close autoryzacja
+	deallocate autoryzacja
+ end
+ go
