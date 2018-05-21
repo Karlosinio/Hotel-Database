@@ -75,6 +75,31 @@ AS
  END
 GO
 
+--Procedura #3 - najczesciej rezerwowany pokoj na danym pietrze
+
+if exists (select 1 from sysobjects where name = 'najczestszy_pokoj')
+drop procedure najczestszy_pokoj
+go
+
+create procedure najczestszy_pokoj(@pietro int)
+as
+ begin
+	declare @pokoj int	
+	select @pokoj = nr_pokoju from byle_rezerwacje
+	where nr_pokoju/100 = @pietro
+	group by nr_pokoju
+	having count(nr_pokoju) = 
+		(
+		select top 1 count(nr_pokoju) as 'wystapienia' from byle_rezerwacje
+		where nr_pokoju/100 = @pietro
+		group by nr_pokoju
+		order by wystapienia desc
+		)
+
+	print 'Na piętrze ' + convert(char(1), @pietro) + ' najczesciej rezerwowanym pokojem jest pokoj o numerze ' + convert(char(3), @pokoj) 
+ end 
+ go
+
 
 -- Funkcja #1 - oblicza cenę danej rezerwacji
 IF EXISTS (SELECT 1 FROM sysobjects WHERE NAME='cena_rezerwacji')
@@ -143,7 +168,6 @@ returns bit
 	return 1
  end
 go
-
 
 -- Wyzwalacz #1 - po zarchiwizowaniu wypozyczenia sprawdzane jest, czy klient nie awansowal do nowego typu
 if exists (select 1 from sysobjects where name='awans_klienta')
