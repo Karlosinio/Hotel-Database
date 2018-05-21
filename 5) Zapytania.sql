@@ -11,11 +11,11 @@ USE hotel
 GO
 
 
---#1 Wyświetl rezerwacje, które zaczęły się w poniedziałek, a skończyły w poniedziałek lub czwartek.
-SELECT *, DATENAME (dw, poczatek_rezerwacji) AS dzien_rezerwacji, DATENAME (dw, DATEADD(day, dni, poczatek_rezerwacji)) AS dzien_konca_rezerwacji
-FROM rezerwacje
+--#1 Wyświetl rezerwacje, które zaczęły się w poniedziałek, a skończyły w poniedziałek lub wtorek.
+SELECT *, DATENAME (dw, poczatek_rezerwacji) AS dzien_rezerwacji, DATENAME (dw, koniec_rezerwacji) AS dzien_konca_rezerwacji
+FROM byle_rezerwacje
 WHERE (DATENAME (dw, poczatek_rezerwacji) = 'Monday') AND
-(DATENAME (dw, DATEADD(day, dni, poczatek_rezerwacji)) = 'Thursday' OR DATENAME (dw, DATEADD(day, dni, poczatek_rezerwacji)) = 'Monday')
+(DATENAME (dw, koniec_rezerwacji) = 'Monday' OR DATENAME (dw, koniec_rezerwacji) = 'Tuesday')
 
 --#2 Wyświetl ile razy był wynajmowany każdy pokój.
 SELECT p.nr_pokoju, (SELECT COUNT (*) FROM byle_rezerwacje AS br WHERE br.nr_pokoju = p.nr_pokoju) +
