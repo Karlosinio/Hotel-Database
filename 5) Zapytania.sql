@@ -53,12 +53,12 @@ GROUP BY nazwa
 
 -- KAROL --
 
--- #K1 Wybierz klientów, którzy pochodzą z Zamościa bądź Lublina, a pokoje które będą wynajmowali kosztują więcej niż 900, mimo, że wcześniej nie wynajmowali takich pokojów
+-- #K1 Wybierz klientów, którzy pochodzą z Łodzi bądź Warszawy, a pokoje które będą wynajmowali kosztują więcej niż 900, mimo, że wcześniej nie wynajmowali takich pokojów
 SELECT DISTINCT k.imie, k.nazwisko, k.nr_klienta FROM klienci AS k, miasta AS m, rezerwacje AS r, pokoje AS p
-WHERE k.miasto = m.nr_miasta AND (m.nazwa = 'Poznan' or m.nazwa = 'Gdansk') AND k.nr_klienta = r.nr_klienta
-AND r.nr_pokoju = p.nr_pokoju AND p.cena > 800 AND k.nr_klienta IN
+WHERE k.miasto = m.nr_miasta AND (m.nazwa = 'Łódź' or m.nazwa = 'Warszawa') AND k.nr_klienta = r.nr_klienta
+AND r.nr_pokoju = p.nr_pokoju AND p.cena > 900 AND k.nr_klienta IN
 (	SELECT DISTINCT kk.nr_klienta FROM klienci AS kk, byle_rezerwacje AS bb, pokoje AS pp
-	WHERE kk.nr_klienta = bb.nr_klienta AND bb.nr_pokoju = pp.nr_pokoju AND pp.cena <= 800)
+	WHERE kk.nr_klienta = bb.nr_klienta AND bb.nr_pokoju = pp.nr_pokoju AND pp.cena <= 900)
 
 -- #K2 Wybierz pokoje, które były wynajmowane tylko przez klientów 2 bądź 3 typu, ale nikt nie planuje wynajmować ich później
 SELECT DISTINCT b.nr_pokoju FROM byle_rezerwacje AS b, klienci AS k
@@ -78,12 +78,12 @@ WHERE ((k.nr_klienta = r.nr_klienta AND r.nr_pokoju = p.nr_pokoju AND p.czy_sejf
 OR (k.nr_klienta = b.nr_klienta AND b.nr_pokoju = p.nr_pokoju AND p.czy_sejf = 1 AND p.czy_wanna = 0))
 AND k.miasto NOT IN (SELECT DISTINCT miasto FROM byli_pracownicy) AND k.miasto = m.nr_miasta
 
--- #K5 Wybierz pokoje, które są zarezerowane tylko raz przez klientów niepochodzących z Łodzi bądź Warszawy, 
---		jednak wcześniej były wynajęte chociaż raz przez klientów pochodzących z tych miast
+-- #K5 Wybierz pokoje, które są zarezerowane tylko raz przez klientów niepochodzących z Zamościa bądź Lublina, 
+--		jednak wcześniej były wynajęte chociaż raz właśnie przez klientów z województwa Lubelskiego
 SELECT DISTINCT r.nr_pokoju, COUNT (*) AS 'ilosc_rezerwacji' FROM rezerwacje AS r, klienci AS k
-WHERE r.nr_klienta = k.nr_klienta AND k.miasto <> 1 AND k.miasto <> 2 AND r.nr_pokoju IN
+WHERE r.nr_klienta = k.nr_klienta AND k.miasto <> 9 AND k.miasto <> 8 AND r.nr_pokoju IN
 (	SELECT DISTINCT bb.nr_pokoju FROM byle_rezerwacje AS bb, klienci AS kk, miasta AS mm
-	WHERE bb.nr_klienta = kk.nr_klienta AND kk.miasto = mm.nr_miasta AND (mm.nr_miasta = 1 OR mm.nr_miasta = 2))
+	WHERE bb.nr_klienta = kk.nr_klienta AND kk.miasto = mm.nr_miasta AND (mm.nr_miasta = 8 OR mm.nr_miasta = 9))
 GROUP BY r.nr_pokoju
 HAVING COUNT (*) = 1
 
