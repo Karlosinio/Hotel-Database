@@ -75,7 +75,7 @@ AS
  END
 GO
 
---Procedura #3 - najczesciej rezerwowany pokoj na danym pietrze
+--Procedura #4 - najczesciej rezerwowany pokoj na danym pietrze
 
 if exists (select 1 from sysobjects where name = 'najczestszy_pokoj')
 drop procedure najczestszy_pokoj

@@ -20,12 +20,17 @@ EXEC usun_pracownika 12
 EXEC usun_pracownika 14
 
 -- Procedura #3 - poprawia rejestracje, ktore nie byly poprawnie zarejestwoane (zbyt duza liczba osob) oraz drukuje komunikat, które z nich są niepoprawne
+EXEC poprawnosc_rejestracji_osoby
 
-EXEC poprawnosc_rejestracji
-
+-- Procedura #4 - najczesciej rezerwowany pokoj na danym pietrze
+EXEC najczestszy_pokoj 2
 
 -- Funkcja #1 - oblicza cenę danej rezerwacji
 SELECT *, dbo.cena_rezerwacji(nr_rezerwacji) as 'cena_rezerwacji' FROM rezerwacje
 
 -- Funkcja #2 - sprawdzenie czy pokoj jest wolny w danym czasie
 SELECT nr_pokoju, dbo.dostepnosc_pokoju(nr_pokoju, '2018/8/8', 15) AS 'Czy dostepny w terminie 08-23.08.2018)' FROM pokoje WHERE nr_pokoju LIKE '3%'
+
+
+select * from byli_pracownicy
+go
