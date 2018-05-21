@@ -20,8 +20,13 @@ EXEC usun_pracownika 12
 EXEC usun_pracownika 14
 
 -- Procedura #3 - poprawia rejestracje, ktore nie byly poprawnie zarejestwoane (zbyt duza liczba osob) oraz drukuje komunikat, które z nich są niepoprawne
-
 EXEC poprawnosc_rejestracji
+
+--Procedura #4 - najczesciej rezerwowany pokoj na danym pietrze
+EXEC najczestszy_pokoj 2
+
+-- Procedura #5 - oplaty dla pracownikow w danym miesiacu z danego roku
+EXEC oplaty '2018', 'Styczen'
 
 
 -- Funkcja #1 - oblicza cenę danej rezerwacji
