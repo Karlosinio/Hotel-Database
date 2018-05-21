@@ -1,4 +1,5 @@
-﻿-- ZSBD: Projekt Systemu
+﻿
+-- ZSBD: Projekt Systemu
 -- Część 5 - Zapytania
 --
 -- Autorzy:
@@ -8,7 +9,6 @@
 
 USE hotel
 GO
-
 
 -- JUSTYNA --
 -- MOIM ZDANIEM CAŁKIEM OK ZAPYTANIA --
@@ -87,7 +87,52 @@ WHERE r.nr_klienta = k.nr_klienta AND k.miasto <> 9 AND k.miasto <> 8 AND r.nr_p
 GROUP BY r.nr_pokoju
 HAVING COUNT (*) = 1
 
+--AAAAAA
 
+--liczba klientow danego typu
+select typ, count(typ) as 'liczba klientów' from klienci
+group by typ
+
+--dane klienta ktory najwiecej zaplacil oraz jego ulubiony pokoj
+select top 1 nr_klienta, klienci.imie, klienci.nazwisko, klienci.nr_klienta, klienci.typ,
+	(
+	select sum(dbo.cena_rezerwacji(nr_rezerwacji)) from byle_rezerwacje
+	where byle_rezerwacje.nr_klienta = klienci.nr_klienta
+	) as 'suma należności'
+	,
+	(
+	select nr_pokoju from byle_rezerwacje
+	where nr_klienta = 2 
+	group by nr_pokoju
+	having count(nr_pokoju) = 
+		(
+		select top 1 count(nr_pokoju) from byle_rezerwacje
+		where nr_klienta = 2
+		group by nr_pokoju
+		)
+	) as 'ulubiony pokoj'
+from klienci 
+order by [suma należności] desc
+
+--cena najdrozszego pokoju na najczesciej wybieranym pietrze
+select top 1 nr_pokoju, cena from pokoje
+where nr_pokoju/100 = 
+	(
+	select nr_pokoju/100 as 'pietro' from byle_rezerwacje
+	group by nr_pokoju/100
+	having count(nr_pokoju) = 
+		(
+		select top 1 count(nr_pokoju) as 'liczba pokoi' from byle_rezerwacje
+		group by nr_pokoju/100
+		order by [liczba pokoi] desc
+		) 
+	)
+
+
+--najczesciej rezerwowane pokoje na kazdym pietrze
+
+select distinct nr_pokoju/100 as 'pietro', dbo.najczestszy_pokoj(nr_pokoju/100) as 'najczęściej wynajmowany pokój'
+from pokoje p 
 
 -- STARE ZAPYTANIA --
 

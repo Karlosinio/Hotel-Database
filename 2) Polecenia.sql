@@ -144,6 +144,31 @@ returns bit
  end
 go
 
+--Funkcja #3 - najczesciej rezerwowany pokoj na danym pietrze
+
+IF EXISTS (SELECT 1 FROM sysobjects WHERE NAME='najczestszy_pokoj')
+DROP FUNCTION najczestszy_pokoj
+GO
+
+create function najczestszy_pokoj(@pietro int)
+returns int
+as
+ begin
+	declare @pokoj int	
+	select @pokoj = nr_pokoju from byle_rezerwacje
+	where nr_pokoju/100 = @pietro
+	group by nr_pokoju
+	having count(nr_pokoju) = 
+		(
+		select top 1 count(nr_pokoju) as 'wystapienia' from byle_rezerwacje
+		where nr_pokoju/100 = @pietro
+		group by nr_pokoju
+		order by wystapienia desc
+		)
+
+	return @pokoj
+ end 
+ go
 
 -- Wyzwalacz #1 - po zarchiwizowaniu wypozyczenia sprawdzane jest, czy klient nie awansowal do nowego typu
 if exists (select 1 from sysobjects where name='awans_klienta')
