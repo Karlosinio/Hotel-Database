@@ -100,6 +100,52 @@ as
  end 
  go
 
+-- Procedura #5 - oplaty dla pracownikow w danym miesiacu z danego roku
+IF EXISTS (SELECT 1 FROM sysobjects WHERE NAME='oplaty')
+DROP PROCEDURE oplaty
+GO
+
+CREATE PROCEDURE oplaty ( @rok varchar(4), @miesiac varchar(20))
+AS
+  BEGIN
+	DECLARE @zysk INT = 0
+	DECLARE @placa INT, @data_zatrudnienia DATE, @data_zwolnienia DATE
+
+	DECLARE Kursor CURSOR FOR SELECT  placa, data_zatrudnienia FROM pracownicy
+	OPEN Kursor
+	FETCH NEXT FROM Kursor INTO @placa, @data_zatrudnienia
+	
+	WHILE @@FETCH_STATUS = 0
+		BEGIN
+			IF ((DATENAME(yy, @data_zatrudnienia) < @rok) AND (DATENAME(mm, @data_zatrudnienia) < @miesiac))
+				SET @zysk = @zysk + @placa
+			
+			FETCH NEXT FROM Kursor INTO @placa, @data_zatrudnienia
+		END
+
+	CLOSE Kursor
+	DEALLOCATE Kursor
+
+	DECLARE Kursor CURSOR FOR SELECT  placa, data_zatrudnienia, data_zwolnienia FROM byli_pracownicy
+	OPEN Kursor
+	FETCH NEXT FROM Kursor INTO @placa, @data_zatrudnienia, @data_zwolnienia
+
+	WHILE @@FETCH_STATUS = 0
+		BEGIN
+			IF (@rok BETWEEN DATENAME(yy, @data_zatrudnienia) AND DATENAME(yy, @data_zwolnienia)) 
+				AND (@miesiac BETWEEN DATENAME(mm, @data_zatrudnienia) AND DATENAME(mm, @data_zwolnienia))
+				SET @zysk = @zysk + @placa
+			
+			FETCH NEXT FROM Kursor INTO @placa, @data_zatrudnienia, @data_zwolnienia
+		END
+	
+	CLOSE Kursor
+	DEALLOCATE Kursor
+
+	PRINT('Oplaty dla pracownikow w roku ' + @rok + ', miesiacu ' + @miesiac + ': ' + CAST(@zysk AS varchar(100)))
+  END
+GO
+
 
 -- Funkcja #1 - oblicza cenę danej rezerwacji
 IF EXISTS (SELECT 1 FROM sysobjects WHERE NAME='cena_rezerwacji')
