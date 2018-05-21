@@ -63,7 +63,7 @@ go
 
 insert into klienci (imie, nazwisko, miasto, adres, telefon, data_urodzenia, typ)
 values ('Izabela', 'Kołodziej', '3', 'Grzegorzowska 33', '523584547', '1995/7/10', '3'),
-('Krzysztof', 'Andrzejewski', '1', 'Rafałowska 56', '584894914', '1948/11/7', '3'),
+('Krzysztof', 'Andrzejewski', '5', 'Rafałowska 56', '584894914', '1948/11/7', '3'),
 ('Czesław', 'Duda', '7', 'Adamowska 81', '528246425', '1941/1/19', '2'),
 ('Damian', 'Walczak', '6', 'Michałowska 115', '521333565', '1971/2/3', '2'),
 ('Paulina', 'Krawczyk', '2', 'Danielowska 85', '562714483', '1967/3/17', '3'),
