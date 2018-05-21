@@ -44,7 +44,7 @@ GO
 
 
 -- Procedura #3 - poprawia rejestracje, ktore nie byly poprawnie zarejestwoane (zbyt duza liczba osob) oraz drukuje komunikat, które z nich są niepoprawne
-IF EXISTS (SELECT 1 FROM sysobjects WHERE NAME='poprawnosc_rejestracji')
+IF EXISTS (SELECT 1 FROM sysobjects WHERE NAME='poprawnosc_rejestracji_osoby')
 DROP PROCEDURE poprawnosc_rejestracji_osoby
 GO
 
@@ -234,7 +234,9 @@ ON rezerwacje
 FOR INSERT
 AS
  BEGIN
-	DECLARE @nr_p INT, @il_o INT, @cena INT, @c_w BIT, @c_s BIT
+ 	DECLARE @nr_p INT, @il_o INT, @cena INT, @c_w BIT, @c_s BIT, @nr_r INT = (SELECT i.nr_rezerwacji FROM inserted AS i)
+	
+	PRINT ' Rezerwacja ' + CONVERT(VARCHAR(5), @nr_r)
 
 	DECLARE Kursor CURSOR FOR SELECT nr_pokoju, ilosc_osob, cena, czy_wanna, czy_sejf FROM pokoje
 	OPEN Kursor
@@ -242,26 +244,45 @@ AS
 
 	WHILE @@FETCH_STATUS = 0
 	  BEGIN
-		IF ((@cena <= (SELECT p.cena FROM pokoje AS p, inserted AS i WHERE i.nr_pokoju = p.nr_pokoju))
-		   AND (@nr_p NOT IN (SELECT r.nr_pokoju FROM rezerwacje AS r, inserted AS i
+		DECLARE @cceennaa INT = (SELECT p.cena FROM pokoje AS p, inserted AS i WHERE i.nr_pokoju = p.nr_pokoju)
+
+		IF ((@cena <= @cceennaa) AND (@nr_p NOT IN (SELECT r.nr_pokoju FROM rezerwacje AS r, inserted AS i
 				WHERE ((i.poczatek_rezerwacji > DATEADD(DAY, r.dni, r.poczatek_rezerwacji)) OR (DATEADD(DAY, i.dni, i.poczatek_rezerwacji) < r.poczatek_rezerwacji)))))
 		  BEGIN
 			DECLARE @opis VARCHAR(200) = ''
 
-			IF (@cena < (SELECT p.cena FROM pokoje AS p, inserted AS i WHERE i.nr_pokoju = p.nr_pokoju))
-				SET @opis = 'pokoj jest tanszy, '
+			IF (@cena < @cceennaa)
+				SET @opis = 'pokoj jest tanszy o ' + CONVERT(VARCHAR(5), (@cceennaa - @cena))
 
 			IF (@il_o < (SELECT p.ilosc_osob FROM pokoje AS p, inserted AS i WHERE i.nr_pokoju = p.nr_pokoju))
-				SET @opis = @opis + 'miesci sie wiecej osob, '
+			  BEGIN
+				IF  @opis <> ''
+					SET @opis = @opis + ', miesci sie wiecej osob'
+				ELSE 
+					SET @opis = @opis + 'miesci sie wiecej osob'
+			  END
+				
 
 			IF (@c_s < (SELECT p.czy_sejf FROM pokoje AS p, inserted AS i WHERE i.nr_pokoju = p.nr_pokoju))
-				SET @opis = @opis + 'jest sejf, '
+			  BEGIN
+				IF  @opis <> ''
+					SET @opis = @opis + ', jest sejf'
+				ELSE 
+					SET @opis = @opis + 'jest sejf'
+			  END
+
 
 			IF (@c_w < (SELECT p.czy_wanna FROM pokoje AS p, inserted AS i WHERE i.nr_pokoju = p.nr_pokoju))
-				SET @opis = @opis + 'jest wanna.'
+			  BEGIN
+				IF  @opis <> ''
+					SET @opis = @opis + ', jest wanna' 
+				ELSE 
+					SET @opis = @opis + 'jest wanna'
+			  END
+				
 
 			if @opis <> ''
-				PRINT '   Pokoj ' + CONVERT(VARCHAR(3), @nr_p) + ' jest lepszym pokojem do wynajęcia, ponieważ: ' + @opis
+				PRINT '   Pokoj ' + CONVERT(VARCHAR(3), @nr_p) + ' jest lepszym pokojem do wynajęcia, ponieważ: ' + @opis + '.'
 
 		  END
 			FETCH NEXT FROM Kursor INTO @nr_p, @il_o, @cena, @c_w, @c_s
